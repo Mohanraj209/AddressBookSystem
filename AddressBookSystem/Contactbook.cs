@@ -6,49 +6,67 @@ using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
-    internal class Contactbook
+    class AddressManagement
     {
-        //properties
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public double Zip { get; set; }
-        public double PhoneNumber { get; set; }
-        public string Email { get; set; }
-
-        //Method to display Contact.
-        public void DisplayContact()
+        public static void ReadInput()
         {
-            Console.WriteLine("\nContact Created:");
-            Console.WriteLine("\n FirstName: " + this.FirstName + "\n LastName: " + this.LastName
-                            + "\n Address: " + this.Address + "\n City: " + this.City + "\n State: "
-                            + this.State + "\n Zip: " + this.Zip + "\n PhoneNumber: "
-                            + this.PhoneNumber + "\n Email: " + this.Email);
-        }
+            //// creating the object for the class address book 
+            AddressBookMain addressBookMain = new AddressBookMain();
+            bool CONTINUE = true;
 
-        /// <summary>
-        /// This method is used to add new contacts.
-        /// </summary>
-        public void AddContact()
-        {
-            Console.WriteLine("\nAdd New Contact: ");
-            Console.WriteLine("Enter First Name, Last Name, Address, City, State, Zip, Phone Number, Email ");
-            Contactbook contactPerson = new Contactbook()
+            //// the loop continues until the user exit.
+            while (CONTINUE)
             {
-                FirstName = Console.ReadLine(),
-                LastName = Console.ReadLine(),
-                Address = Console.ReadLine(),
-                City = Console.ReadLine(),
-                State = Console.ReadLine(),
-                Zip = Convert.ToDouble(Console.ReadLine()),
-                PhoneNumber = Convert.ToDouble(Console.ReadLine()),
-                Email = Console.ReadLine(),
-            };
-            List<Contactbook> list = new List<Contactbook>();
-            list.Add(contactPerson);
-            contactPerson.DisplayContact();
+                Console.WriteLine("Enter your choice:");
+                Console.WriteLine("1.Add contacts");
+                Console.WriteLine("2.Display");
+                Console.WriteLine("3.Edit Details");
+                Console.WriteLine("0.Exit");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        AddDetails(addressBookMain);
+                        break;
+                    case 2:
+                        addressBookMain.DisplayContact();
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the first name of person");
+                        string name = Console.ReadLine();
+                        addressBookMain.EditContact(name);
+                        break;
+                    case 0:
+                        CONTINUE = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// This method is used to add a new contact.
+        /// </summary>
+        /// <param name="addressBookMain"></param>
+        public static void AddDetails(AddressBookMain addressBookMain)
+        {
+            Console.WriteLine("Enter first Name");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter Last Name");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("Enter Address");
+            string address = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            string city = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            string state = Console.ReadLine();
+            Console.WriteLine("Enter Zipcode");
+            long zipCode = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter Phone Number");
+            long phoneNumber = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter Email");
+            string email = Console.ReadLine();
+            addressBookMain.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
         }
     }
 }
