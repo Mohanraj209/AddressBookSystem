@@ -11,7 +11,7 @@ namespace AddressBookSystem
         public static void Main()
         {
             Console.WriteLine("--------** AddressBookSystem **---------");
-            Console.Write("\nEnter Contact Details: First Name, Last Name, Address, City, State, Zip, Phone Number, Email ");
+            Console.WriteLine("\nEnter Contact Details: First Name, Last Name, Address, City, State, Zip, Phone Number, Email ");
             Contactbook addressBook = new Contactbook()  //Initializing elements using collection-initializer syntax
             {
                 FirstName = Console.ReadLine(),
@@ -24,6 +24,7 @@ namespace AddressBookSystem
                 Email = Console.ReadLine(),
             };
             addressBook.DisplayContact();
+            addressBook.AddContact();
             Console.ReadLine();
         }
     }
