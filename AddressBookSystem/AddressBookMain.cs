@@ -133,5 +133,26 @@ namespace AddressBookSystem
                 Console.WriteLine("You Can Proceed");
             }
         }
+
+        public void CityList()
+        {
+            Console.WriteLine("Enter the City name to find persons : ");
+            string city = Console.ReadLine();
+            List<Contact> cityList = addressList.FindAll(e => e.City == city);
+            foreach (var data in cityList)
+            {
+                Console.WriteLine("Found person {0} {1} in the Address Book , residing in the City {2}", data.FirstName, data.LastName, data.City);
+            }
+        }
+        public void StateList()
+        {
+            Console.WriteLine("Enter the State name to find persons : ");
+            string state = Console.ReadLine();
+            List<Contact> stateList = addressList.FindAll(e => e.State == state);
+            foreach (var data in stateList)
+            {
+                Console.WriteLine("Found person {0} {1} in the Address Book , residing in the State {2}", data.FirstName, data.LastName, data.State);
+            }
+        }
     }
 }
