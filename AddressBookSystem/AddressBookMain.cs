@@ -63,6 +63,8 @@ namespace AddressBookSystem
                             string email = Console.ReadLine();
                             contact.Email = email;
                             break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -80,19 +82,15 @@ namespace AddressBookSystem
             addressList.Remove(delete);
             Console.WriteLine(name + " contact is deleted from the Address Book");
         }
-
         public void Display()
         {
+            Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            Console.WriteLine("Here are the contacts in your Address Book : ");
             foreach (var contact in addressList)
             {
-                Console.WriteLine(contact.FirstName + " " + contact.LastName);
-                Console.WriteLine("Address : " + contact.Address);
-                Console.WriteLine("City : " + contact.City);
-                Console.WriteLine("State : " + contact.State);
-                Console.WriteLine("Zip : " + contact.Zip);
-                Console.WriteLine("PhoneNumber : " + contact.PhoneNumber);
-                Console.WriteLine("Email : " + contact.Email);
+                Console.WriteLine(contact.FirstName + "\t" + contact.LastName + "\t" + contact.City + "\t" + contact.PhoneNumber);
             }
+            Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         }
     }
 }
