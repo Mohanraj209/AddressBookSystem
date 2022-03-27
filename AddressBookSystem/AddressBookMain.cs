@@ -94,15 +94,12 @@ namespace AddressBookSystem
             }
             Console.WriteLine("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         }
-        public void AddUniqueContact(string unique)
+        public void AddUniqueContact()
         {
             foreach (var contact in addressList)
             {
-                if (addressList.Contains(contact))
-                {
-                    string uniqueName = Console.ReadLine();
-                    dictionary.Add(uniqueName, addressList);
-                }
+                string uniqueName = Console.ReadLine();
+                dictionary.Add(uniqueName, addressList);
             }
         }
         public void DisplayUniqueContacts()
@@ -121,6 +118,20 @@ namespace AddressBookSystem
             }
             Console.WriteLine("Oops Unique Contacts does not exist !!! Please create a Unique contact list");
             return;
+        }
+        public void CheckDuplicateEntry()
+        {
+            Console.WriteLine("Enter the name to check : ");
+            string check = Console.ReadLine();
+            var person = addressList.Find(e => e.FirstName.Equals(check));
+            if (person != null)
+            {
+                Console.WriteLine("This Contact already exists with same First Name : " + check);
+            }
+            else
+            {
+                Console.WriteLine("You Can Proceed");
+            }
         }
     }
 }
