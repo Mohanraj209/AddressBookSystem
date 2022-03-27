@@ -8,79 +8,90 @@ namespace AddressBookSystem
 {
     public class AddressBookMain
     {
-        // constants
-        const int LAST_NAME = 1, ADDRESS = 2, CITY = 3, STATE = 4, ZIP = 5, PHONE_NUMBER = 6, EMAIL = 7;
-
-        private LinkedList<Contact> contactList;
-
-        public AddressBookMain()
+        List<Contact> addressList = new List<Contact>();
+        public void AddContact(Contact contact)
         {
-            this.contactList = new LinkedList<Contact>();
-        }
-        //this method add details to the address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, string email)
-        {
-            Contact contactDetails = new Contact(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
-            this.contactList.AddLast(contactDetails);
-        }
-
-        public void DisplayContact()
-        {
-            foreach (Contact data in this.contactList)
-            {
-                data.Display();
-            }
+            addressList.Add(contact);
         }
         public void EditContact(string name)
         {
-            Console.WriteLine("Enter your choice:");
-            Console.WriteLine("1. Last Name");
-            Console.WriteLine("2. Address");
-            Console.WriteLine("3. City");
-            Console.WriteLine("4. State");
-            Console.WriteLine("5. Zip");
-            Console.WriteLine("6. Phone Number");
-            Console.WriteLine("7. Email");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            //// checks for every object whether the name is equal the given name
-            foreach (Contact data in this.contactList)
+            foreach (var contact in addressList)
             {
-                if (data.firstName.Equals(name))
+                if (contact.FirstName == name || contact.LastName == name)
                 {
+                    Console.WriteLine("Choose the field you want to edit : \n 1. First name \n 2. Last name \n 3. Address \n 4. City \n 5. State \n 6. Zip code \n 7. Phone Number \n 8. Email");
+                    int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
-                        case LAST_NAME:
-                            data.lastName = Console.ReadLine();
-                            Console.WriteLine("Data updated successfully");
+                        case 1:
+                            Console.WriteLine("Enter you want to edit");
+                            string first = Console.ReadLine();
+                            contact.FirstName = first;
                             break;
-                        case ADDRESS:
-                            data.address = Console.ReadLine();
-                            Console.WriteLine("Data updated successfully");
+                        case 2:
+                            Console.WriteLine("Enter you want to edit");
+                            string last = Console.ReadLine();
+                            contact.LastName = last;
                             break;
-                        case CITY:
-                            data.city = Console.ReadLine();
-                            Console.WriteLine("Data updated successfully");
+                        case 3:
+                            Console.WriteLine("Enter you want to edit");
+                            string address = Console.ReadLine();
+                            contact.Address = address;
                             break;
-                        case STATE:
-                            data.state = Console.ReadLine();
-                            Console.WriteLine("Data updated successfully");
+                        case 4:
+                            Console.WriteLine("Enter you want to edit");
+                            string city = Console.ReadLine();
+                            contact.City = city;
                             break;
-                        case ZIP:
-                            data.zipCode = Convert.ToInt64(Console.ReadLine());
-                            Console.WriteLine("Data updated successfully");
+                        case 5:
+                            Console.WriteLine("Enter you want to edit");
+                            string state = Console.ReadLine();
+                            contact.State = state;
                             break;
-                        case PHONE_NUMBER:
-                            data.phoneNumber = Convert.ToInt64(Console.ReadLine());
-                            Console.WriteLine("Data updated successfully");
+                        case 6:
+                            Console.WriteLine("Enter you want to edit");
+                            string zip = Console.ReadLine();
+                            contact.Zip = zip;
                             break;
-                        case EMAIL:
-                            data.email = Console.ReadLine();
-                            Console.WriteLine("Data updated successfully");
+                        case 7:
+                            Console.WriteLine("Enter you want to edit");
+                            string phone = Console.ReadLine();
+                            contact.PhoneNumber = phone;
                             break;
-                        default:
+                        case 8:
+                            Console.WriteLine("Enter you want to edit");
+                            string email = Console.ReadLine();
+                            contact.Email = email;
                             break;
                     }
                 }
+            }
+        }
+        public void DeleteContact(string name)
+        {
+            Contact delete = new Contact();
+            foreach (var contact in addressList)
+            {
+                if (contact.FirstName == name || contact.LastName == name)
+                {
+                    delete = contact;
+                }
+            }
+            addressList.Remove(delete);
+            Console.WriteLine(name + " contact is deleted from the Address Book");
+        }
+
+        public void Display()
+        {
+            foreach (var contact in addressList)
+            {
+                Console.WriteLine(contact.FirstName + " " + contact.LastName);
+                Console.WriteLine("Address : " + contact.Address);
+                Console.WriteLine("City : " + contact.City);
+                Console.WriteLine("State : " + contact.State);
+                Console.WriteLine("Zip : " + contact.Zip);
+                Console.WriteLine("PhoneNumber : " + contact.PhoneNumber);
+                Console.WriteLine("Email : " + contact.Email);
             }
         }
     }
